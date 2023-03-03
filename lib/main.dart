@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'catagories_screen.dart';
+import 'category_meals_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
             .copyWith(secondary: Colors.amber),
       ),
       home: MyHomePage(),
+      routes: {
+        "/category_meal_screen": (context) => Catmeals(),
+      },
     );
   }
 }

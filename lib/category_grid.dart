@@ -9,14 +9,22 @@ class CateGrid extends StatelessWidget {
   CateGrid({this.color, this.title, this.id});
 
   void selectCar(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(builder: (_) {
-        return Catmeals(
-          title: title,
-          color: color,
-          id: id,
-        );
-      }),
+    // Navigator.of(ctx).push(
+    //   MaterialPageRoute(builder: (_) {
+    //     return Catmeals(
+    //       title: title,
+    //       color: color,
+    //       id: id,
+    //     );
+    //   }),
+    // );
+
+    Navigator.of(ctx).pushNamed(
+      "/category_meal_screen",
+      arguments: {
+        'id': id,
+        "title": title,
+      },
     );
   }
 
