@@ -8,6 +8,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(
+      padding: const EdgeInsets.all(20),
       children: DUMMY_CATEGORIES
           .map((e) => CateGrid(
                 color: e.color,
