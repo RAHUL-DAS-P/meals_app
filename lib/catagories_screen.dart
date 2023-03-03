@@ -13,6 +13,7 @@ class CategoriesScreen extends StatelessWidget {
           .map((e) => CateGrid(
                 color: e.color,
                 title: e.title,
+                id: e.id,
               ))
           .toList(),
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
