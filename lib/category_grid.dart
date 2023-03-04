@@ -6,6 +6,8 @@ class CateGrid extends StatelessWidget {
   final Color color;
   final String id;
 
+  static const String namedRoute = "/category_meal_screen";
+
   CateGrid({this.color, this.title, this.id});
 
   void selectCar(BuildContext ctx) {
@@ -20,7 +22,7 @@ class CateGrid extends StatelessWidget {
     // );
 
     Navigator.of(ctx).pushNamed(
-      "/category_meal_screen",
+      namedRoute,
       arguments: {
         'id': id,
         "title": title,
