@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import "category_meals_screen.dart";
 
 class CateGrid extends StatelessWidget {
   final String title;
