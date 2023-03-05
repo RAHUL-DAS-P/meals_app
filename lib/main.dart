@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/screens/meal_details.dart';
+import 'package:flutter_complete_guide/userwidgets/meal_item.dart';
 import 'screens/catagories_screen.dart';
 import 'screens/category_meals_screen.dart';
 import 'userwidgets/category_grid.dart';
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: {
         CateGrid.namedRoute: (context) => Catmeals(),
+        MealItem.routeName: (context) => MealDetails(),
       },
     );
   }
