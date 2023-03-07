@@ -24,10 +24,10 @@ class MealDetails extends StatelessWidget {
   Widget createList(BuildContext context, Widget child) {
     return Container(
       width: 500,
-      height: 250,
+      height: 300,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black,
+          color: Colors.pink,
         ),
         borderRadius: BorderRadius.circular(10),
         color: Colors.amberAccent,
@@ -53,7 +53,7 @@ class MealDetails extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.pink,
                   border: Border.all(
-                    color: Colors.black,
+                    color: Colors.pink,
                   ),
                   borderRadius: BorderRadius.circular(10)),
               margin: EdgeInsets.all(20),
@@ -70,11 +70,19 @@ class MealDetails extends StatelessWidget {
                 itemBuilder: (context, index) => Column(
                   children: [
                     ListTile(
-                      leading: CircleAvatar(child: Text("#${index + 1}")),
-                      title: Text(
-                        selectedMeal.steps[index],
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      leading: CircleAvatar(child: Text("${index + 1}")),
+                      title: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          color: Colors.amber[100],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          selectedMeal.steps[index],
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     Divider(
@@ -96,12 +104,20 @@ class MealDetails extends StatelessWidget {
                   children: [
                     ListTile(
                       leading: CircleAvatar(
-                        child: Text("#${index + 1}"),
+                        child: Text("${index + 1}"),
                       ),
-                      title: Text(
-                        selectedMeal.steps[index],
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      title: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.pink),
+                          color: Colors.amber[100],
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: EdgeInsets.all(5),
+                        child: Text(
+                          selectedMeal.steps[index],
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     Divider(
