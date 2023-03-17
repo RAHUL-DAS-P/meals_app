@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/screens/favourites.dart';
+import 'package:flutter_complete_guide/screens/filters_screen.dart';
+import 'screens/favourites.dart';
+import 'userwidgets/main_drawer.dart';
 import 'screens/meal_details_screen.dart';
 import 'userwidgets/meal_item.dart';
 import 'screens/catagories_screen.dart';
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         CateGrid.namedRoute: (context) => Catmeals(),
         MealItem.routeName: (context) => MealDetails(),
+        FiltersScreen.routeName: (context) => FiltersScreen(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) => MyHomePage());
@@ -47,7 +50,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<Widget> pages = [CategoriesScreen(), Favourites()];
+  List<Map<String, Object>> pages = [
+    {
+      "page": CategoriesScreen(),
+      "title": "Categories",
+    },
+    {
+      "page": Favourites(),
+      "title": "Favourites",
+    },
+  ];
   int _selectedPage = 0;
 
   int _selectPage(int index) {
@@ -60,9 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DeliMeals'),
+        title: Text(pages[_selectedPage]["title"]),
       ),
-      body: pages[_selectedPage],
+      drawer: MainDrawer(),
+      body: pages[_selectedPage]["page"],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.pink,
         unselectedItemColor: Colors.white70,
@@ -74,12 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
             backgroundColor: Colors.pink,
-            label: "Categories",
+            label: pages[_selectedPage]["title"],
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.category),
             backgroundColor: Colors.pink,
-            label: "Favourites",
+            label: pages[_selectedPage]["title"],
           ),
         ],
       ),
