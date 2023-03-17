@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/screens/filters_screen.dart';
+import 'dummy_data.dart';
+import 'screens/filters_screen.dart';
+import './models/meal.dart';
 import 'screens/favourites.dart';
 import 'userwidgets/main_drawer.dart';
 import 'screens/meal_details_screen.dart';
@@ -10,7 +12,40 @@ import 'userwidgets/category_grid.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+  List<Meal> _avaialbleMeals = DUMMY_MEALS;
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+      _avaialbleMeals = DUMMY_MEALS.where((meal) {
+        if (filterData['gluten'] && !meal.isGlutenFree) {
+          return false;
+        }
+        if (filterData['lactose'] && !meal.isLactoseFree) {
+          return false;
+        }
+        if (filterData['vegan'] && !meal.isVegan) {
+          return false;
+        }
+        if (filterData['vegetarian'] && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,9 +68,10 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       routes: {
-        CateGrid.namedRoute: (context) => Catmeals(),
+        CateGrid.namedRoute: (context) => Catmeals(_avaialbleMeals),
         MealItem.routeName: (context) => MealDetails(),
-        FiltersScreen.routeName: (context) => FiltersScreen(),
+        FiltersScreen.routeName: (context) =>
+            FiltersScreen(_filters, _setFilters),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (context) => MyHomePage());
@@ -62,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   int _selectedPage = 0;
 
-  int _selectPage(int index) {
+  void _selectPage(int index) {
     setState(() {
       _selectedPage = index;
     });
@@ -90,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: pages[_selectedPage]["title"],
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
+            icon: Icon(Icons.star),
             backgroundColor: Colors.pink,
             label: pages[_selectedPage]["title"],
           ),

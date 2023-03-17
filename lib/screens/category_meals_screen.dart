@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/userwidgets/meal_item.dart';
-import '../dummy_data.dart';
+import '../models/meal.dart';
 
 class Catmeals extends StatelessWidget {
   // final String title;
   // final Color color;
   // final String id;
+  final List<Meal> availableMeals;
+  Catmeals(this.availableMeals);
 
   // Catmeals({this.title, this.color, this.id});
   @override
@@ -14,7 +16,7 @@ class Catmeals extends StatelessWidget {
         ModalRoute.of(context).settings.arguments as Map<String, String>;
     final title = routeArgs['title'];
     final id = routeArgs['id'];
-    final categoryMeals = DUMMY_MEALS.where((meal) {
+    final categoryMeals = availableMeals.where((meal) {
       return meal.categories.contains(id);
     }).toList();
     return Scaffold(

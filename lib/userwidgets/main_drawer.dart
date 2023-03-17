@@ -30,6 +30,7 @@ class MainDrawer extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(10),
+            margin: EdgeInsets.all(5),
             height: 150,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -42,7 +43,7 @@ class MainDrawer extends StatelessWidget {
             child: Text(
               "Let'S Cook",
               style: TextStyle(
-                fontSize: 50,
+                fontSize: 40,
                 fontWeight: FontWeight.w900,
                 color: Colors.pink,
               ),
