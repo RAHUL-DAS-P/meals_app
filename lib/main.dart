@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/screens/meal_details_screen.dart';
-import 'package:flutter_complete_guide/userwidgets/meal_item.dart';
+import 'package:flutter_complete_guide/screens/favourites.dart';
+import 'screens/meal_details_screen.dart';
+import 'userwidgets/meal_item.dart';
 import 'screens/catagories_screen.dart';
 import 'screens/category_meals_screen.dart';
 import 'userwidgets/category_grid.dart';
@@ -46,13 +47,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Widget> pages = [CategoriesScreen(), Favourites()];
+  int _selectedPage = 0;
+
+  int _selectPage(int index) {
+    setState(() {
+      _selectedPage = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('DeliMeals'),
       ),
-      body: CategoriesScreen(),
+      body: pages[_selectedPage],
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.pink,
+        unselectedItemColor: Colors.white70,
+        selectedItemColor: Colors.white,
+        currentIndex: _selectedPage,
+        type: BottomNavigationBarType.shifting,
+        onTap: _selectPage,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            backgroundColor: Colors.pink,
+            label: "Categories",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            backgroundColor: Colors.pink,
+            label: "Favourites",
+          ),
+        ],
+      ),
     );
   }
 }
